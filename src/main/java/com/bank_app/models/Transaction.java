@@ -1,20 +1,23 @@
 package com.bank_app.models;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
-@Builder
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Transaction {
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Transaction extends AbstractEntity {
+
 
     private BigDecimal amount;
 
@@ -23,9 +26,6 @@ public class Transaction {
 
     private String destinationIban;
 
-    private LocalDateTime creationDate;
-
-    private LocalDateTime lastUpdated;
 
     @ManyToOne
     @JoinColumn(name = "id_user")

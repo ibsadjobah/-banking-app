@@ -1,19 +1,21 @@
 package com.bank_app.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 
 import javax.persistence.*;
 
 @Data
-@Builder
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Contact {
+public class Contact extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private Integer id;
 
     private String firstname;
 

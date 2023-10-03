@@ -1,22 +1,22 @@
 package com.bank_app.models;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
-@Builder
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class User {
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class User  extends  AbstractEntity{
+
 
     private String firstname;
 
@@ -28,12 +28,21 @@ public class User {
 
     private boolean active;
 
-    //private Address address;
+    @OneToOne
+    private Address address;
 
     @OneToMany(mappedBy = "user")
     private List<Transaction> transactions;
 
-    @OneToMany(mappedBy = "contact")
+    @OneToMany(mappedBy = "user")
     private List<Contact> contacts;
+
+    @OneToOne
+    private Account account;
+
+    @OneToOne
+    private Role role;
+
+
 
 }
