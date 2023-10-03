@@ -16,10 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Account extends AbstractEntity{
 
-
-
     private String iban;
-
 
     @OneToOne
     @JoinColumn(name = "id_user")
