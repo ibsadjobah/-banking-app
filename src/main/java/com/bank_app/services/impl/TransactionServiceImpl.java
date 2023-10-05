@@ -55,7 +55,6 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void delete(Integer id) {
 
-        //check todo  delete
         repository.deleteById(id);
 
     }

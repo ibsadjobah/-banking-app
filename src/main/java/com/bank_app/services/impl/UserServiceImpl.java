@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Integer id) {
-        // todo check before delete
+
         repository.deleteById(id);
     }
 }
