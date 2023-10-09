@@ -1,8 +1,12 @@
 package com.bank_app.services.impl;
 
+import com.bank_app.dto.AccountDto;
 import com.bank_app.dto.UserDto;
+import com.bank_app.models.Account;
 import com.bank_app.models.User;
+import com.bank_app.repositories.AccountRepository;
 import com.bank_app.repositories.UserRepository;
+import com.bank_app.services.AccountService;
 import com.bank_app.services.UserService;
 import com.bank_app.validator.ObjectsValidator;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +21,8 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
+
+    private final AccountService accountService;
 
     private final ObjectsValidator<UserDto> validator;
 
@@ -51,5 +57,33 @@ public class UserServiceImpl implements UserService {
     public void delete(Integer id) {
 
         repository.deleteById(id);
+    }
+
+    @Override
+    public Integer validateAccount(Integer id) {
+
+        User user  = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No user Was found user account validation"));
+
+        user.setActive(true);
+        // create bank account
+       AccountDto accountDto = AccountDto.builder()
+               .user(UserDto.fromEntity(user))
+               .build();
+       accountService.Save(accountDto);
+       repository.save(user);
+        return user.getId();
+    }
+
+    @Override
+    public Integer invalidateAccount(Integer id) {
+
+        User user  = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No user Was found user account validation"));
+
+        user.setActive(false);
+        repository.save(user);
+
+        return user.getId();
     }
 }
