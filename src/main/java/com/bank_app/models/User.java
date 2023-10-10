@@ -2,7 +2,6 @@ package com.bank_app.models;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -22,6 +21,7 @@ public class User  extends  AbstractEntity{
 
     private String lastname;
 
+    @Column(unique = true)
     private String email;
 
     private String password;

@@ -1,6 +1,5 @@
 package com.bank_app.controllers;
 
-import com.bank_app.dto.AccountDto;
 import com.bank_app.dto.TransactionDto;
 import com.bank_app.services.TransactionService;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +34,7 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.findById(transactionId));
     }
 
-    @GetMapping("/api/v1/users/{userId}")
+    @GetMapping("user/{userId}")
     public ResponseEntity<List<TransactionDto>> findAllByUserId(@PathVariable("userId") Integer userId){
 
         return ResponseEntity.ok(transactionService.findAllByUserId(userId));

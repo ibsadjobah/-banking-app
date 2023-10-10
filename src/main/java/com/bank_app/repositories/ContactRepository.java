@@ -1,6 +1,5 @@
 package com.bank_app.repositories;
 
-import com.bank_app.dto.ContactDto;
 import com.bank_app.models.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 

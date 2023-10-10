@@ -1,12 +1,15 @@
 package com.bank_app.services;
 
+import com.bank_app.dto.TransactionSumDetails;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Map;
+import java.util.List;
+
 
 public interface StatisticsService {
 
-    Map<LocalDate, BigDecimal> findSumTransactionByDate(LocalDate startDate, LocalDate endDate, Integer userId);
+    List<TransactionSumDetails> findSumTransactionByDate(LocalDate startDate, LocalDate endDate, Integer userId);
 
     BigDecimal getAmountBalance(Integer userId);
 

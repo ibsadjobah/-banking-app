@@ -32,13 +32,13 @@ public class UserController {
         return ResponseEntity.ok(userService.findById(userId));
     }
 
-    @PatchMapping("/validate{userId}")
+    @PatchMapping("/validate/{userId}")
     public ResponseEntity<Integer> validateAccount(@PathVariable("userId") Integer userId){
 
         return ResponseEntity.ok(userService.validateAccount(userId));
     }
 
-    @PatchMapping("/invalidate{userId}")
+    @PatchMapping("/invalidate/{userId}")
     public ResponseEntity<Integer> inValidateAccount(@PathVariable("userId") Integer userId){
 
         return ResponseEntity.ok(userService.invalidateAccount(userId));

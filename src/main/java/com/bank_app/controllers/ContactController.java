@@ -1,6 +1,5 @@
 package com.bank_app.controllers;
 
-import com.bank_app.dto.AccountDto;
 import com.bank_app.dto.ContactDto;
 import com.bank_app.services.ContactService;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +35,7 @@ public class ContactController {
         return ResponseEntity.ok(contactService.findById(contactId));
     }
 
-    @GetMapping("/api/v1/users/{userId}")
+    @GetMapping("{userId}")
     public ResponseEntity<List<ContactDto>> findAllByUserId(@PathVariable("userId") Integer userId){
 
         return ResponseEntity.ok(contactService.findAllByUserId(userId));

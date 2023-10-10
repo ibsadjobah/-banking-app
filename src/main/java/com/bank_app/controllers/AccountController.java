@@ -1,8 +1,6 @@
 package com.bank_app.controllers;
 
 import com.bank_app.dto.AccountDto;
-import com.bank_app.dto.AddressDto;
-import com.bank_app.repositories.AccountRepository;
 import com.bank_app.services.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +35,7 @@ public class AccountController {
     }
 
     @DeleteMapping("{accountId}")
-    public ResponseEntity<Void> delete(@PathVariable("addressId") Integer accountId){
+    public ResponseEntity<Void> delete(@PathVariable("accountId") Integer accountId){
 
         accountService.delete(accountId);
         return ResponseEntity.accepted().build();

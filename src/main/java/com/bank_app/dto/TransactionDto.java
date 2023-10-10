@@ -8,10 +8,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -28,6 +27,8 @@ public class TransactionDto {
 
     private String destinationIban;
 
+    private LocalDate transactionDate;
+
     private Integer userId;
 
     public static TransactionDto fromEntity(Transaction transaction){
@@ -36,6 +37,7 @@ public class TransactionDto {
                 .amount(transaction.getAmount())
                 .type(transaction.getType())
                 .destinationIban(transaction.getDestinationIban())
+                .transactionDate(transaction.getTransactionDate())
                 .userId(transaction.getUser().getId())
                 .build();
     }
@@ -46,6 +48,7 @@ public class TransactionDto {
                 .amount(transaction.getAmount())
                 .type(transaction.getType())
                 .destinationIban(transaction.getDestinationIban())
+                .transactionDate(LocalDate.now())
                 .user(
                         User.builder()
                                 .id(transaction.getUserId())

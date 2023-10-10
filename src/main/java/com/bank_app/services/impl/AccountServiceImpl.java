@@ -12,7 +12,6 @@ import org.iban4j.Iban;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import javax.xml.validation.Validator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,7 +42,7 @@ public class AccountServiceImpl implements AccountService {
         Account account = AccountDto.toEntity(dto);
 
         boolean UserHasAlreadyAnAccount = repository.findByUserId(account.getUser().getId()).isPresent();
-        if (UserHasAlreadyAnAccount) {
+        if (UserHasAlreadyAnAccount && account.getUser().isActive()) {
             throw new OperationNonPermittedException(
                     "The selected User has already an active Account",
                     "Create Account ",
