@@ -2,16 +2,17 @@ package com.bank_app.repositories;
 
 import com.bank_app.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    List<User> findAllByFirstname(String firstname);
+    Optional<User> findByEmail(String email);
+
+   /* List<User> findAllByFirstname(String firstname);
 
     List<User> findAllByFirstnameContaining(String firstname);
 
@@ -32,6 +33,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> searchIban(String iban);
 
     @Query(value = "select  * from  User u inner join Account a on u.id = a.id_user and a.iban = :iban", nativeQuery = true)
-    List<User> searchIbanNative(String iban);
+    List<User> searchIbanNative(String iban);*/
+
 
 }
