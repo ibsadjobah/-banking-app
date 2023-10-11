@@ -15,7 +15,7 @@ public class TransactionController {
 
     private final TransactionService transactionService;
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<Integer> save(@RequestBody TransactionDto transactionDto) {
 
         return ResponseEntity.ok(transactionService.Save(transactionDto));

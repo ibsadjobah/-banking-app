@@ -119,14 +119,15 @@ public class UserServiceImpl implements UserService {
         validator.validate(dto);
         User user = UserDto.toEntity(dto);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         user.setRole(
                 findOrCreateRole(ROLE_USER)
         );
 
         User savedUser = repository.save(user);
-        Map<String, Object> claims = new HashMap<>();
+       /* Map<String, Object> claims = new HashMap<>();
         claims.put("userId", savedUser.getId());
-        claims.put("fullname", savedUser.getFirstname() + " " + savedUser.getLastname());
+        claims.put("fullname", savedUser.getFirstname() + " " + savedUser.getLastname());*/
         String token = jwtUtils.generateToken(savedUser);
 
        return AuthenticationResponse.builder()
@@ -143,11 +144,8 @@ public class UserServiceImpl implements UserService {
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
 
         );
-        final User user = repository.findByEmail(request.getEmail()).get();
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("userId", user.getId());
-        claims.put("fullname", user.getFirstname() + " " + user.getLastname());
-        final String token = jwtUtils.generateToken(user, claims);
+        final UserDetails user = repository.findByEmail(request.getEmail()).get();
+        final String token = jwtUtils.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(token)
                 .build();
