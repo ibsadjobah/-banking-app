@@ -2,6 +2,7 @@ package com.bank_app.controllers;
 
 import com.bank_app.dto.UserDto;
 import com.bank_app.services.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/users")
+@Tag(name = "user")
 public class UserController {
 
     private final UserService userService;

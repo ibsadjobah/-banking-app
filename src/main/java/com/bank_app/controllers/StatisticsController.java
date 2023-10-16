@@ -2,6 +2,7 @@ package com.bank_app.controllers;
 
 import com.bank_app.dto.TransactionSumDetails;
 import com.bank_app.services.StatisticsService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/statistics")
+@Tag(name = "statistics")
 public class StatisticsController {
 
     private final StatisticsService statisticsService;
